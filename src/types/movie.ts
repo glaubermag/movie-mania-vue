@@ -8,6 +8,10 @@ export interface Movie {
   vote_average: number;
   genre_ids: number[];
   price?: number;
+  original_title?: string;
+  original_language?: string;
+  popularity?: number;
+  vote_count?: number;
 }
 
 export interface CartItem {
