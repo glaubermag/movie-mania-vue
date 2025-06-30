@@ -56,7 +56,7 @@
         </div>
         <div>
           <div
-            class="card sticky top-4 bg-zinc-900/90 backdrop-blur-md border-2 border-orange-500/30 shadow-xl animate-fade-in transition-all duration-300"
+            class="card sticky top-4 bg-zinc-900/90 backdrop-blur-md border-2 border-orange-500/30 shadow-xl animate-fade-in transition-all duration-300 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-full mx-auto"
           >
             <div class="card-header pb-2 border-b border-orange-500/20">
               <div class="card-title text-xl font-bold text-orange-400 tracking-wide">
