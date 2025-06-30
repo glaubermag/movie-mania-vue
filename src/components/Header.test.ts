@@ -157,7 +157,12 @@ describe('Header', () => {
       },
     ];
     const store = makeStore(vi.fn(), favs);
-    const wrapper = mount(Header, { global: { plugins: [store] } });
+    const wrapper = mount(Header, { 
+      global: { 
+        plugins: [store], 
+        stubs: { RouterLink: RouterLinkStub } 
+      } 
+    });
     await wrapper.find('button[aria-label="Favoritos"]').trigger('click');
     // Espera renderização
     await wrapper.vm.$nextTick();
