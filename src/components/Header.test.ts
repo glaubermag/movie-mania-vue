@@ -50,14 +50,6 @@ describe('Header', () => {
     expect(wrapper.text()).toContain('Filme Favorito');
   });
 
-  it('filtra favoritos pela busca local', async () => {
-    const store = makeStore();
-    const wrapper = mount(Header, { global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } } });
-    await wrapper.find('button[aria-label="Favoritos"]').trigger('click');
-    await wrapper.find('input[aria-label="Busca de favoritos"]').setValue('Favorito');
-    expect(wrapper.text()).toContain('Filme Favorito');
-  });
-
   it('remove um favorito ao clicar no botão de remover', async () => {
     const dispatch = vi.fn();
     const store = makeStore(dispatch);
@@ -118,5 +110,20 @@ describe('Header', () => {
     // Selecionar overlay por classe parcial
     const overlay = wrapper.find('[class*="bg-black/30"]');
     expect(overlay.exists()).toBe(true);
+  });
+
+  it('renderiza todos os favoritos no modal', async () => {
+    // Simula favoritos
+    const favs = [
+      { id: 1, title: 'Filme A', overview: 'Desc A', poster_path: '', backdrop_path: '', release_date: '', vote_average: 0, genre_ids: [] },
+      { id: 2, title: 'Filme B', overview: 'Desc B', poster_path: '', backdrop_path: '', release_date: '', vote_average: 0, genre_ids: [] },
+    ];
+    const store = makeStore(vi.fn(), favs);
+    const wrapper = mount(Header, { global: { plugins: [store] } });
+    await wrapper.find('button[aria-label="Favoritos"]').trigger('click');
+    // Espera renderização
+    await wrapper.vm.$nextTick();
+    expect(wrapper.html()).toContain('Filme A');
+    expect(wrapper.html()).toContain('Filme B');
   });
 }); 

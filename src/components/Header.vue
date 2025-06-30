@@ -44,10 +44,9 @@
       <div class="w-full max-w-md bg-zinc-900 rounded-lg shadow-xl mt-24 mr-8 p-6 relative overflow-y-auto max-h-[80vh] border border-zinc-800">
         <button @click="showFavorites = false" class="absolute top-2 right-2 text-gray-400 hover:text-primary text-2xl font-bold">&times;</button>
         <h2 class="text-xl font-bold text-white mb-4">Meus Favoritos</h2>
-        <input v-if="favoriteMovies.length > 0" type="search" placeholder="Buscar favoritos..." v-model="searchQuery" class="mb-4 w-full p-2 rounded bg-zinc-800 text-white" aria-label="Busca de favoritos" />
         <div v-if="favoriteMovies.length === 0" class="text-gray-400 text-center py-8">Nenhum filme favorito encontrado.</div>
         <div v-else class="space-y-4">
-          <div v-for="movie in filteredFavorites" :key="movie.id" class="flex items-center gap-4 bg-zinc-800 rounded p-2 shadow border border-zinc-700">
+          <div v-for="movie in favoriteMovies" :key="movie.id" class="flex items-center gap-4 bg-zinc-800 rounded p-2 shadow border border-zinc-700">
             <img :src="getImageUrl(movie.poster_path)" :alt="movie.title" class="w-16 h-24 object-cover rounded" />
             <div class="flex-1">
               <div class="font-semibold text-white">{{ movie.title }}</div>
@@ -77,13 +76,6 @@ const store = useStore();
 
 const totalItems = computed(() => store.getters['cart/getTotalItems']);
 const favoriteMovies = computed(() => store.getters['favorites/favorites'] || []);
-
-const filteredFavorites = computed(() => {
-  if (!searchQuery.value) return favoriteMovies.value;
-  return favoriteMovies.value.filter(movie =>
-    movie.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-  );
-});
 
 function handleSearch() {
   emit('search', searchQuery.value);
