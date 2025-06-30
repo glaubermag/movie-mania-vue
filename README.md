@@ -58,7 +58,7 @@ O formulário de checkout possui integração automática com a API [ViaCEP](htt
 
 ```bash
 # Clone o repositório
-git clone <SUA_GIT_URL>
+git clone https://github.com/glaubermag/movie-mania-vue
 cd movie-mania-vue
 
 # Instale as dependências
