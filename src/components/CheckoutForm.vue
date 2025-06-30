@@ -21,7 +21,7 @@
               placeholder="seu@email.com"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.email && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -39,7 +39,7 @@
               placeholder="(99) 99999-9999"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.phone && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -61,7 +61,7 @@
               placeholder="Seu nome completo"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.fullName && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -79,7 +79,7 @@
               placeholder="000.000.000-00"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.cpf && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -107,7 +107,7 @@
               placeholder="00000-000"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.cep && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -123,7 +123,7 @@
               placeholder="Rua, Avenida, etc."
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.address && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -143,7 +143,7 @@
               placeholder="Número"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.number && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -159,7 +159,7 @@
               v-model="formData.complement"
               @input="handleInputChange('complement', formData.complement)"
               placeholder="Apto, bloco, etc."
-              class="input-base bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
+              class="input-base bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400"
             />
           </div>
         </div>
@@ -174,7 +174,7 @@
               placeholder="Bairro"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.neighborhood && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -192,7 +192,7 @@
               placeholder="Cidade"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.city && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -212,7 +212,7 @@
               placeholder="Estado"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.state && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -241,7 +241,7 @@
               placeholder="0000 0000 0000 0000"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.cardNumber && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -261,7 +261,7 @@
               placeholder="Nome impresso no cartão"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.cardName && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -281,7 +281,7 @@
               placeholder="MM/AA"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.expiryDate && 'border-red-500 focus:ring-red-500',
               ]"
             />
@@ -299,7 +299,7 @@
               placeholder="000"
               :class="[
                 'input-base',
-                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                'bg-zinc-800 text-white placeholder-white border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
                 errors.cvv && 'border-red-500 focus:ring-red-500',
               ]"
             />

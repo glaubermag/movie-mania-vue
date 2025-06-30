@@ -1,5 +1,6 @@
 <template>
   <div class="min-h-screen bg-cinema-gradient">
+    <Header />
     <div
       v-if="items.length === 0 && !showSuccessModal"
       class="flex items-center justify-center min-h-screen"
@@ -110,6 +111,7 @@ import { useRouter } from 'vue-router';
 import CheckoutForm from '@/components/CheckoutForm.vue';
 import SuccessModal from '@/components/SuccessModal.vue';
 import { getImageUrl } from '@/services/tmdbApi';
+import Header from '@/components/Header.vue';
 
 const store = useStore();
 const router = useRouter();

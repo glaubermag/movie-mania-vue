@@ -4,11 +4,9 @@
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between w-full">
           <div class="flex items-center space-x-4 md:space-x-8">
-            <h1
-              class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent whitespace-nowrap"
-            >
+            <router-link to="/" class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent whitespace-nowrap" aria-label="Ir para a página inicial">
               MovieMania
-            </h1>
+            </router-link>
           </div>
           <!-- Botão do menu hamburguer à direita no mobile -->
           <button @click="isMenuOpen = !isMenuOpen" class="md:hidden ml-2 text-white focus:outline-none">
