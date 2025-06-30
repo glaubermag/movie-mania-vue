@@ -74,7 +74,7 @@ describe('MovieCard', () => {
       props: { movie },
       global: { plugins: [store] },
     });
-    const btn = wrapper.find('button.w-8.h-8');
+    const btn = wrapper.find('button:has(svg)');
     expect(btn.exists()).toBe(true);
     await btn.trigger('click');
     expect(addToFavorites).toHaveBeenCalled();
@@ -100,9 +100,10 @@ describe('MovieCard', () => {
       props: { movie },
       global: { plugins: [store] },
     });
-    const btn = wrapper.find('button.button-primary');
-    expect(btn.exists()).toBe(true);
-    await btn.trigger('click');
+    const buttons = wrapper.findAll('button');
+    const addToCartBtn = buttons.find(btn => btn.text().includes('Adicionar ao Carrinho'));
+    expect(addToCartBtn).toBeTruthy();
+    await addToCartBtn!.trigger('click');
     expect(addToCart).toHaveBeenCalled();
   });
 

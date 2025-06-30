@@ -15,10 +15,11 @@
         class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       />
       <div
-        class="absolute top-2 right-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        class="absolute top-2 right-2 flex space-x-2"
+        :class="'md:opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-300'"
       >
         <button
-          class="w-8 h-8 flex items-center justify-center rounded-full border border-white/20 bg-black/60 hover:bg-black/80 transition text-white"
+          class="w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-black/60 hover:bg-black/80 transition text-white text-xl md:w-8 md:h-8 md:text-base"
           :class="{ 'text-red-500': isFavorite }"
           @click="handleToggleFavorite"
         >
@@ -26,7 +27,7 @@
           <svg
             v-if="isFavorite"
             xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 fill-current"
+            class="w-6 h-6 md:w-4 md:h-4 fill-current"
             viewBox="0 0 24 24"
           >
             <path
@@ -36,7 +37,7 @@
           <svg
             v-else
             xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4"
+            class="w-6 h-6 md:w-4 md:h-4"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -51,15 +52,16 @@
         </button>
       </div>
       <div
-        class="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        class="absolute bottom-0 left-0 right-0 p-2 md:p-4"
+        :class="'md:opacity-0 md:group-hover:opacity-100 md:transition-opacity md:duration-300'"
       >
         <button
-          class="w-full button-primary text-sm flex items-center justify-center"
+          class="w-full py-3 rounded-lg bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold text-lg shadow hover:from-orange-500 hover:to-red-500 transition flex items-center justify-center md:text-sm"
           @click="handleAddToCart"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-4 h-4 mr-2"
+            class="w-6 h-6 mr-2 md:w-4 md:h-4"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -71,7 +73,7 @@
               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.35 2.7A2 2 0 0 0 7.48 19h9.04a2 2 0 0 0 1.83-1.3L21 13M9 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm6 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
             />
           </svg>
-          Adicionar ao Carrinho
+          <span class="block">Adicionar ao Carrinho</span>
         </button>
       </div>
     </div>
