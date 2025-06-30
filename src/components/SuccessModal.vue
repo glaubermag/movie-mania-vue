@@ -58,5 +58,5 @@
 </template>
 
 <script setup lang="ts">
-// const props = defineProps<{ isOpen: boolean; onClose: () => void; orderNumber: string }>();
+defineProps<{ isOpen: boolean; onClose: () => void; orderNumber: string }>();
 </script>

@@ -2,7 +2,7 @@
   <article
     class="movie-card group h-full flex flex-col bg-white/5 rounded-xl shadow-lg overflow-hidden min-h-[420px]"
     tabindex="0"
-    aria-label="Cartão do filme: {{ movie.title }}"
+    :aria-label="`Cartão do filme: ${movie.title}`"
   >
     <div class="relative">
       <img
@@ -76,48 +76,162 @@
       </div>
     </div>
     <div class="p-4 flex flex-col flex-1 justify-between">
-      <h2 class="font-semibold text-lg mb-1 line-clamp-1 text-foreground" tabindex="0">{{ movie.title }}</h2>
+      <h2 class="font-semibold text-lg mb-1 line-clamp-1 text-foreground" tabindex="0">
+        {{ movie.title }}
+      </h2>
       <div class="flex flex-wrap gap-1 mb-2" aria-label="Gêneros">
-        <span v-for="genre in genreNames" :key="genre" class="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full font-medium" tabindex="0">
+        <span
+          v-for="genre in genreNames"
+          :key="genre"
+          class="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full font-medium"
+          tabindex="0"
+        >
           {{ genre }}
         </span>
       </div>
       <div class="flex flex-wrap items-center gap-2 text-xs text-gray-400 mb-2">
-        <span v-if="movie.original_title && movie.original_title !== movie.title" class="italic truncate max-w-[60%]" title="Título original" tabindex="0">
-          <svg class="inline w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+        <span
+          v-if="movie.original_title && movie.original_title !== movie.title"
+          class="italic truncate max-w-[60%]"
+          title="Título original"
+          tabindex="0"
+        >
+          <svg
+            class="inline w-4 h-4 mr-1 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4v16m8-8H4"
+            />
+          </svg>
           {{ movie.original_title }}
         </span>
-        <span v-if="movie.original_language" class="flex items-center" title="Idioma original" tabindex="0">
-          <svg class="inline w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2" /></svg>
+        <span
+          v-if="movie.original_language"
+          class="flex items-center"
+          title="Idioma original"
+          tabindex="0"
+        >
+          <svg
+            class="inline w-4 h-4 mr-1 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2" />
+          </svg>
           <span class="uppercase">{{ movie.original_language }}</span>
         </span>
-        <span v-if="movie.release_date" class="flex items-center" title="Ano de lançamento" tabindex="0">
-          <svg class="inline w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+        <span
+          v-if="movie.release_date"
+          class="flex items-center"
+          title="Ano de lançamento"
+          tabindex="0"
+        >
+          <svg
+            class="inline w-4 h-4 mr-1 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
           {{ new Date(movie.release_date).getFullYear() }}
         </span>
       </div>
       <div class="flex flex-wrap items-center gap-3 text-xs text-gray-400 mb-2">
         <span class="flex items-center" title="Popularidade" tabindex="0">
-          <svg class="inline w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m4 4h1a2 2 0 002-2v-5a2 2 0 00-2-2h-1a2 2 0 00-2 2v5a2 2 0 002 2z" /></svg>
+          <svg
+            class="inline w-4 h-4 mr-1 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 16h-1v-4h-1m4 4h1a2 2 0 002-2v-5a2 2 0 00-2-2h-1a2 2 0 00-2 2v5a2 2 0 002 2z"
+            />
+          </svg>
           {{ movie.popularity?.toFixed(0) }}
         </span>
         <span class="flex items-center" title="Votos" tabindex="0">
-          <svg class="inline w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M17 8a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          <svg
+            class="inline w-4 h-4 mr-1 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M17 8a4 4 0 11-8 0 4 4 0 018 0z"
+            />
+          </svg>
           {{ movie.vote_count }}
         </span>
         <span class="flex items-center" title="Nota média" tabindex="0">
-          <svg class="inline w-4 h-4 mr-1 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.04 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z" /></svg>
+          <svg
+            class="inline w-4 h-4 mr-1 text-yellow-400"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+          >
+            <path
+              d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.04 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z"
+            />
+          </svg>
           {{ movie.vote_average.toFixed(1) }}
         </span>
       </div>
       <div class="mb-3">
         <p class="text-gray-400 text-sm min-h-[40px]" tabindex="0">
-          <span v-if="!showFullOverview">{{ truncatedOverview }}<span v-if="isTruncated">... <button class='text-primary underline' @click="showFullOverview = true" aria-label="Expandir sinopse">ver mais</button></span></span>
-          <span v-else>{{ movie.overview }} <button class='text-primary underline' @click="showFullOverview = false" aria-label="Reduzir sinopse">ver menos</button></span>
+          <span v-if="!showFullOverview"
+            >{{ truncatedOverview
+            }}<span v-if="isTruncated"
+              >...
+              <button
+                class="text-primary underline"
+                @click="showFullOverview = true"
+                aria-label="Expandir sinopse"
+              >
+                ver mais
+              </button></span
+            ></span
+          >
+          <span v-else
+            >{{ movie.overview }}
+            <button
+              class="text-primary underline"
+              @click="showFullOverview = false"
+              aria-label="Reduzir sinopse"
+            >
+              ver menos
+            </button></span
+          >
         </p>
       </div>
       <div class="flex items-center justify-between mt-auto pt-2 border-t border-white/10">
-        <span class="text-lg font-bold text-primary" tabindex="0">{{ formatPrice(movie.price || 19.99) }}</span>
+        <span class="text-lg font-bold text-primary" tabindex="0">{{
+          formatPrice(movie.price || 19.99)
+        }}</span>
       </div>
     </div>
   </article>
@@ -175,13 +289,17 @@ const genreMap: Record<number, string> = {
   10752: 'Guerra',
   37: 'Faroeste',
 };
-const genreNames = computed(() => (props.movie.genre_ids || []).map(id => genreMap[id]).filter(Boolean));
+const genreNames = computed(() =>
+  (props.movie.genre_ids || []).map((id) => genreMap[id]).filter(Boolean)
+);
 
 // Sinopse truncada/expandida
 const showFullOverview = ref(false);
 const maxOverviewLength = 110;
 const isTruncated = computed(() => (props.movie.overview || '').length > maxOverviewLength);
 const truncatedOverview = computed(() =>
-  isTruncated.value ? (props.movie.overview || '').slice(0, maxOverviewLength) : (props.movie.overview || '')
+  isTruncated.value
+    ? (props.movie.overview || '').slice(0, maxOverviewLength)
+    : props.movie.overview || ''
 );
 </script>

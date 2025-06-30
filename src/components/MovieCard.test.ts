@@ -3,6 +3,10 @@ import { mount } from '@vue/test-utils';
 import MovieCard from './MovieCard.vue';
 import { createStore } from 'vuex';
 
+// @ts-ignore
+// eslint-disable-next-line no-undef
+type HTMLElement = Element & { focus(): void };
+
 const movie = {
   id: 1,
   title: 'Filme Teste',
@@ -118,5 +122,101 @@ describe('MovieCard', () => {
       global: { plugins: [store] },
     });
     expect(wrapper.text()).toContain('Filme Teste');
+  });
+
+  it('preço deve ser lido por leitores de tela', () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie },
+      global: { plugins: [store] },
+    });
+    const price = wrapper.find('span.text-lg.font-bold');
+    expect(price.exists()).toBe(true);
+    expect(price.attributes('tabindex')).toBe('0');
+    expect(price.text()).toContain('R$');
+    expect(price.text()).toContain('19,99');
+  });
+
+  it('card deve ter aria-label descritivo', () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie },
+      global: { plugins: [store] },
+    });
+    const article = wrapper.find('article');
+    expect(article.attributes('aria-label')).toContain('Cartão do filme');
+    expect(article.attributes('aria-label')).toContain('Filme Teste');
+  });
+
+  it('deve ser possível navegar por tab entre os principais elementos', async () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie },
+      attachTo: document.body,
+      global: { plugins: [store] },
+    });
+    const tabbables = wrapper.findAll('[tabindex="0"]');
+    expect(tabbables.length).toBeGreaterThan(3); // título, gêneros, preço, etc
+    // Simula navegação por tab
+    tabbables.forEach((el) => {
+      (el.element as HTMLElement).focus();
+      expect(document.activeElement).toBe(el.element);
+    });
+    wrapper.unmount();
+  });
+});
+
+describe('Acessibilidade MovieCard', () => {
+  it('deve ser focável por teclado (tabindex)', () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie },
+      global: { plugins: [store] },
+    });
+    const article = wrapper.find('article');
+    expect(article.attributes('tabindex')).toBe('0');
+  });
+
+  it('imagem deve ter alt descritivo', () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie },
+      global: { plugins: [store] },
+    });
+    const img = wrapper.find('img');
+    expect(img.attributes('alt')).toContain('Capa do filme');
+  });
+
+  it('título deve ser focável e lido por leitores de tela', () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie },
+      global: { plugins: [store] },
+    });
+    const h2 = wrapper.find('h2');
+    expect(h2.exists()).toBe(true);
+    expect(h2.attributes('tabindex')).toBe('0');
+  });
+
+  it('todos os gêneros devem ser focáveis', () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie: { ...movie, genre_ids: [28, 12] } },
+      global: { plugins: [store] },
+    });
+    const genres = wrapper.findAll('[aria-label="Gêneros"] span');
+    expect(genres.length).toBeGreaterThan(0);
+    genres.forEach((g) => expect(g.attributes('tabindex')).toBe('0'));
+  });
+
+  it('sinopse deve ser lida por leitores de tela', () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie },
+      global: { plugins: [store] },
+    });
+    const p = wrapper.find('p.text-gray-400');
+    expect(p.exists()).toBe(true);
+    expect(p.attributes('tabindex')).toBe('0');
   });
 });

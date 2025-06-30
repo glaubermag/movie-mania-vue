@@ -4,14 +4,32 @@
       <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between w-full">
           <div class="flex items-center space-x-4 md:space-x-8">
-            <router-link to="/" class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent whitespace-nowrap" aria-label="Ir para a página inicial">
+            <router-link
+              to="/"
+              class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent whitespace-nowrap"
+              aria-label="Ir para a página inicial"
+            >
               MovieMania
             </router-link>
           </div>
           <!-- Botão do menu hamburguer à direita no mobile -->
-          <button @click="isMenuOpen = !isMenuOpen" class="md:hidden ml-2 text-white focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <button
+            @click="isMenuOpen = !isMenuOpen"
+            class="md:hidden ml-2 text-white focus:outline-none"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             </svg>
           </button>
           <!-- Menu Desktop -->
@@ -22,7 +40,10 @@
           </nav>
           <div class="flex items-center space-x-2 md:space-x-4 ml-2">
             <!-- Barra de pesquisa e botões só em md+ -->
-            <form @submit.prevent="handleSearch" class="relative w-32 sm:w-48 md:w-64 hidden md:block">
+            <form
+              @submit.prevent="handleSearch"
+              class="relative w-32 sm:w-48 md:w-64 hidden md:block"
+            >
               <input
                 type="text"
                 placeholder="Buscar filmes..."
@@ -69,7 +90,10 @@
                 {{ favoriteMovies.length }}
               </span>
             </button>
-            <button @click="isCartOpen = true" class="relative text-white hover:text-primary hidden md:inline-flex">
+            <button
+              @click="isCartOpen = true"
+              class="relative text-white hover:text-primary hidden md:inline-flex"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-5 h-5"
@@ -116,7 +140,11 @@
               />
             </svg>
           </form>
-          <router-link to="/" class="block py-2 px-4 text-foreground hover:text-primary transition-colors" @click="isMenuOpen = false">
+          <router-link
+            to="/"
+            class="block py-2 px-4 text-foreground hover:text-primary transition-colors"
+            @click="isMenuOpen = false"
+          >
             Início
           </router-link>
           <button
@@ -146,7 +174,10 @@
               {{ favoriteMovies.length }}
             </span>
           </button>
-          <button @click="isCartOpen = true" class="relative text-white hover:text-primary w-full flex items-center justify-start mt-2">
+          <button
+            @click="isCartOpen = true"
+            class="relative text-white hover:text-primary w-full flex items-center justify-start mt-2"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="w-5 h-5 mr-2"

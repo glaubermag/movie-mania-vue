@@ -94,7 +94,7 @@ describe('Header', () => {
       },
     });
     console.log(wrapper.html());
-    await wrapper.find('h1').trigger('click');
+    await wrapper.find('a[aria-label="Ir para a página inicial"]').trigger('click');
     // O push do useRouter foi mockado globalmente
     // Não é possível acessar diretamente, mas não deve dar erro
     expect(true).toBe(true);

@@ -1,7 +1,9 @@
 <template>
   <div v-if="isOpen" class="fixed inset-0 z-50 flex">
     <div class="fixed inset-0 bg-black/50 z-40" @click="onClose"></div>
-    <div class="ml-auto w-full max-w-full sm:max-w-md bg-card h-full overflow-hidden animate-slide-in-right z-50">
+    <div
+      class="ml-auto w-full max-w-full sm:max-w-md bg-card h-full overflow-hidden animate-slide-in-right z-50"
+    >
       <div class="flex flex-col h-full">
         <div class="flex items-center justify-between p-4 sm:p-6 border-b border-border">
           <h2 class="text-xl font-semibold">Carrinho de Compras</h2>
