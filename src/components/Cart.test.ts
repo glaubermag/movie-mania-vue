@@ -138,7 +138,7 @@ describe('Cart', () => {
     const tabbables = wrapper.findAll('button, a, input, select, textarea, [tabindex="0"]');
     expect(tabbables.length).toBeGreaterThan(2);
     tabbables.forEach((el) => {
-      (el.element as HTMLElement).focus();
+      (el.element as any).focus();
       expect(document.activeElement).toBe(el.element);
     });
     wrapper.unmount();
