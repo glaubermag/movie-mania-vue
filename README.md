@@ -113,7 +113,7 @@ docker run -p 80:80 movie-mania-vue
 
 O projeto possui uma cobertura abrangente de testes:
 
-- **73 testes** passando
+- **78 testes** passando
 - **9 arquivos de teste** cobrindo componentes críticos
 - Testes de acessibilidade com axe-core
 - Testes de integração com APIs externas
@@ -186,7 +186,7 @@ O projeto inclui workflow GitHub Actions que executa:
 - Todas as funcionalidades solicitadas foram implementadas com diferenciais visuais e de UX
 - A experiência mobile foi cuidadosamente trabalhada
 - O código está documentado, testado e fácil de manter
-- Cobertura de testes de 100% nos componentes críticos
+- Cobertura de testes de 100% nos componentes críticos (78 testes)
 - Acessibilidade completa seguindo padrões WCAG
 
 ---
@@ -194,7 +194,7 @@ O projeto inclui workflow GitHub Actions que executa:
 ## Diferenciais desta entrega
 
 - ✅ **Integração real com APIs externas** (TMDb e ViaCEP)
-- ✅ **Testes automatizados** com alta cobertura (73 testes)
+- ✅ **Testes automatizados** com alta cobertura (78 testes)
 - ✅ **Acessibilidade completa** com navegação por teclado e screen readers
 - ✅ **Responsividade avançada** com design mobile-first
 - ✅ **Componentização robusta** com separação clara de responsabilidades
@@ -204,4 +204,15 @@ O projeto inclui workflow GitHub Actions que executa:
 - ✅ **Máscaras de input** para melhor UX
 - ✅ **Animações e feedbacks visuais** para melhor experiência
 
+## Como contribuir
 
+Contribuições são bem-vindas! Para sugerir melhorias, abrir issues ou enviar pull requests:
+
+- Faça um fork do projeto
+- Crie uma branch descritiva (`feature/nome-da-feature` ou `fix/ajuste-x`)
+- Envie um pull request detalhando sua contribuição
+- Siga as boas práticas de código e acessibilidade
+
+## Colaboração
+
+Este projeto valoriza diversidade, inclusão e aprendizado contínuo. Sinta-se à vontade para sugerir melhorias, reportar bugs ou propor discussões!

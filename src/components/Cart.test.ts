@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mount } from '@vue/test-utils';
 import Cart from './Cart.vue';
 import { createStore } from 'vuex';
+import axe from 'axe-core';
 
 vi.mock('vue-router', () => ({
   useRouter: () => ({ push: vi.fn() }),
@@ -113,5 +114,33 @@ describe('Cart', () => {
       global: { plugins: [store] },
     });
     expect(wrapper.text()).toContain('Finalizando');
+  });
+
+  it('não possui violações básicas de acessibilidade (axe-core)', async () => {
+    const store = makeStore(cartItems, 40);
+    const wrapper = mount(Cart, {
+      props: { ...props, isOpen: true },
+      global: { plugins: [store] },
+      attachTo: document.body,
+    });
+    const results = await axe.run(wrapper.element);
+    expect(results.violations.length).toBe(0);
+    wrapper.unmount();
+  });
+
+  it('deve ser possível navegar por tab entre os principais elementos', async () => {
+    const store = makeStore(cartItems, 40);
+    const wrapper = mount(Cart, {
+      props: { ...props, isOpen: true },
+      global: { plugins: [store] },
+      attachTo: document.body,
+    });
+    const tabbables = wrapper.findAll('button, a, input, select, textarea, [tabindex="0"]');
+    expect(tabbables.length).toBeGreaterThan(2);
+    tabbables.forEach((el) => {
+      (el.element as HTMLElement).focus();
+      expect(document.activeElement).toBe(el.element);
+    });
+    wrapper.unmount();
   });
 });

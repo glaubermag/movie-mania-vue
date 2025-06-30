@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import MovieCard from './MovieCard.vue';
 import { createStore } from 'vuex';
+import axe from 'axe-core';
 
 // @ts-ignore
 // eslint-disable-next-line no-undef
@@ -163,6 +164,18 @@ describe('MovieCard', () => {
       (el.element as HTMLElement).focus();
       expect(document.activeElement).toBe(el.element);
     });
+    wrapper.unmount();
+  });
+
+  it('não possui violações básicas de acessibilidade (axe-core)', async () => {
+    const store = makeStore(false);
+    const wrapper = mount(MovieCard, {
+      props: { movie },
+      global: { plugins: [store] },
+      attachTo: document.body,
+    });
+    const results = await axe.run(wrapper.element);
+    expect(results.violations.length).toBe(0);
     wrapper.unmount();
   });
 });

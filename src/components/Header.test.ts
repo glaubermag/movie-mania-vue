@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { mount, RouterLinkStub } from '@vue/test-utils';
 import Header from './Header.vue';
 import { createStore } from 'vuex';
+import axe from 'axe-core';
 
 vi.mock('vue-router', () => ({
   useRouter: () => ({ push: vi.fn() }),
@@ -162,5 +163,16 @@ describe('Header', () => {
     await wrapper.vm.$nextTick();
     expect(wrapper.html()).toContain('Filme A');
     expect(wrapper.html()).toContain('Filme B');
+  });
+
+  it('não possui violações básicas de acessibilidade (axe-core)', async () => {
+    const store = makeStore();
+    const wrapper = mount(Header, {
+      global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } },
+      attachTo: document.body,
+    });
+    const results = await axe.run(wrapper.element);
+    expect(results.violations.length).toBe(0);
+    wrapper.unmount();
   });
 });

@@ -81,11 +81,12 @@
       <h2 class="font-semibold text-lg mb-1 line-clamp-1 text-foreground" tabindex="0">
         {{ movie.title }}
       </h2>
-      <div class="flex flex-wrap gap-1 mb-2" aria-label="Gêneros">
+      <div class="flex flex-wrap gap-1 mb-2" role="list" aria-label="Gêneros">
         <span
           v-for="genre in genreNames"
           :key="genre"
           class="bg-primary/10 text-primary text-xs px-2 py-0.5 rounded-full font-medium"
+          role="listitem"
           tabindex="0"
         >
           {{ genre }}
