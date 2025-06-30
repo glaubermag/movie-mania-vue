@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: {
-      "@": "/src",
+      "@": new URL("./src", import.meta.url).pathname.replace(/^\//, ""),
     },
   },
 }));

@@ -22,6 +22,9 @@ const favoritesModule: Module<FavoritesState, any> = {
     removeFromFavorites(state, movieId: number) {
       state.favorites = state.favorites.filter(movie => movie.id !== movieId);
     },
+    clearFavorites(state) {
+      state.favorites = [];
+    }
   },
   actions: {
     loadFavorites({ commit }) {

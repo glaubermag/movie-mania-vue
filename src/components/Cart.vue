@@ -10,7 +10,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
         </div>
-        <div class="flex-1 overflow-y-auto p-6">
+        <div v-if="loading" class="flex-1 flex items-center justify-center text-lg font-bold text-primary">
+          Finalizando
+        </div>
+        <div v-else class="flex-1 overflow-y-auto p-6">
           <div v-if="items.length === 0" class="text-center text-gray-400 mt-8">
             <p>Seu carrinho está vazio</p>
             <p class="text-sm mt-2">Adicione alguns filmes para começar!</p>
@@ -42,7 +45,7 @@
             </div>
           </div>
         </div>
-        <div v-if="items.length > 0" class="border-t border-border p-6">
+        <div v-if="items.length > 0 && !loading" class="border-t border-border p-6">
           <div class="flex items-center justify-between mb-4">
             <span class="text-lg font-semibold">Total:</span>
             <span class="text-xl font-bold text-primary">{{ formatPrice(totalPrice) }}</span>
@@ -61,7 +64,7 @@ import { useRouter } from 'vue-router';
 import { getImageUrl } from '@/services/tmdbApi';
 import type { Movie, CartItem } from '@/types/movie';
 
-const props = defineProps<{ isOpen: boolean; onClose: () => void }>();
+const props = defineProps<{ isOpen: boolean; onClose: () => void; loading?: boolean }>();
 const store = useStore();
 const router = useRouter();
 
