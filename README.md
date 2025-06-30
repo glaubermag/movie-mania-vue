@@ -1,66 +1,73 @@
-# MovieMania Digital Cinema
+# MovieMania - Loja Virtual de Filmes
 
-Este é um projeto de cinema digital que utiliza Vue.js, Vuex, integração com a API TMDb, e Tailwind CSS.
+Projeto desenvolvido como desafio técnico para o DOT Digital Group.
 
-## Instalação
+## Proposta
+Desenvolver uma loja virtual de filmes com interface moderna, integração com a API TMDb e navegação fluida, focando em usabilidade, responsividade e experiência do usuário.
 
-```bash
-npm install
-```
+## Requisitos Atendidos
 
-## Rodando o projeto
+### Obrigatórios
+- [x] Utilização do framework Vue.js 3
+- [x] Layout das telas principais: Página Inicial, Carrinho lateral e Checkout
+- [x] Gerenciamento de estado com Vuex
+- [x] Integração com a API de filmes TMDb
+- [x] Listagem de filmes retornados da API
+- [x] Carrinho de compras lateral totalmente funcional
+- [x] Fluxo de checkout completo
+- [x] Validação de todos os campos do formulário de checkout
+- [x] Modal de sucesso ao finalizar a compra
 
-```bash
-npm run dev
-```
+### Desejáveis
+- [x] Pesquisa de filmes (busca integrada à API)
+- [x] Máscaras nos campos de email, celular, CEP e CPF
+- [x] Adicionar/remover filmes à lista de favoritos do usuário
 
 ## Funcionalidades
-- Listagem de filmes (API TMDb)
-- Favoritos
-- Carrinho lateral
-- Checkout com validação
-- Modal de sucesso
+- Listagem de filmes populares e busca por título
+- Carrinho lateral com gerenciamento de itens
+- Checkout com validação e máscaras
+- Modal de sucesso após compra
+- Favoritar/desfavoritar filmes com visualização rápida no header
+- Responsividade total (mobile first)
+- Animações e feedbacks visuais
 
-## Tecnologias
-- Vue 3
-- Vuex
-- Vue Router
-- Tailwind CSS
+## Tecnologias Utilizadas
+- [Vue 3](https://vuejs.org/)
+- [Vuex](https://vuex.vuejs.org/)
+- [Vue Router](https://router.vuejs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
 
-## Como editar este código?
+## Instalação e Uso
 
-Você pode editar este projeto localmente usando seu editor de código favorito.
-
-O único requisito é ter Node.js & npm instalados.
-
-Siga estes passos:
-
-```sh
-# Passo 1: Clone o repositório usando a URL do projeto.
+```bash
+# Clone o repositório
 git clone <SUA_GIT_URL>
-
-# Passo 2: Navegue até o diretório do projeto.
 cd <NOME_DO_PROJETO>
 
-# Passo 3: Instale as dependências necessárias.
-npm i
+# Instale as dependências
+npm install
 
-# Passo 4: Inicie o servidor de desenvolvimento.
+# Crie um arquivo .env com suas chaves da TMDb
+cp .env.example .env
+# Edite o arquivo .env com suas credenciais
+
+# Rode o projeto em modo desenvolvimento
 npm run dev
 ```
 
-## Tecnologias utilizadas
+## Deploy
+O projeto pode ser facilmente hospedado em serviços como Vercel, Netlify ou similares. Basta configurar as variáveis de ambiente `VITE_TMDB_API_KEY` e `VITE_TMDB_READ_TOKEN` no painel do serviço.
 
-- Vite
-- TypeScript
-- Vue.js
-- Vuex
-- Tailwind CSS
+## Considerações Finais
+- O projeto foi desenvolvido priorizando padrões de código, componentização, usabilidade e responsividade.
+- Todas as funcionalidades solicitadas foram implementadas, com diferenciais visuais e de UX.
+- A experiência mobile foi cuidadosamente trabalhada.
+- O código está documentado e fácil de manter.
 
-## Como fazer deploy deste projeto?
 
-Basta utilizar um serviço de hospedagem compatível com projetos Vite/Vue.js, como Vercel, Netlify ou similar.
+---
 
-## Domínio personalizado
 
-Você pode conectar um domínio personalizado utilizando as configurações do seu serviço de hospedagem.

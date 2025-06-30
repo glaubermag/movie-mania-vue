@@ -1,0 +1,15 @@
+<svg width="500" height="750" viewBox="0 0 500 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="750" fill="#e5e7eb"/>
+  <g>
+    <rect x="100" y="200" width="300" height="350" rx="24" fill="#d1d5db"/>
+    <rect x="140" y="260" width="220" height="120" rx="12" fill="#9ca3af"/>
+    <rect x="140" y="400" width="140" height="20" rx="8" fill="#9ca3af"/>
+    <rect x="140" y="430" width="180" height="20" rx="8" fill="#9ca3af"/>
+    <rect x="140" y="460" width="100" height="20" rx="8" fill="#9ca3af"/>
+  </g>
+  <text x="50%" y="650" text-anchor="middle" fill="#6b7280" font-size="40" font-family="Arial, sans-serif">Sem Imagem</text>
+  <g>
+    <rect x="200" y="320" width="100" height="60" rx="8" fill="#f87171"/>
+    <polygon points="230,340 270,350 230,370" fill="#fff"/>
+  </g>
+</svg>

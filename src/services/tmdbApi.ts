@@ -74,65 +74,64 @@ const mockMovies = [
   }
 ];
 
-export const getPopularMovies = async () => {
+export const getPopularMovies = async (page = 1) => {
   if (API_KEY && READ_TOKEN) {
     try {
-      const response = await fetch(`${BASE_URL}/movie/popular?language=pt-BR`, {
+      const response = await fetch(`${BASE_URL}/movie/popular?language=pt-BR&page=${page}`, {
         headers: {
           Authorization: `Bearer ${READ_TOKEN}`,
           'Content-Type': 'application/json;charset=utf-8',
         },
       });
       const data = await response.json();
-      // Adiciona preço fictício para cada filme
-      return data.results.map((movie: any) => ({
-        ...movie,
-        price: (Math.random() * 10 + 15).toFixed(2),
-      }));
+      return {
+        movies: data.results.map((movie: any) => ({
+          ...movie,
+          price: (Math.random() * 10 + 15).toFixed(2),
+        })),
+        page: data.page,
+        totalPages: data.total_pages,
+      };
     } catch (error) {
       console.error('Erro ao buscar filmes populares da TMDB:', error);
-      // fallback para mock
-      return mockMovies;
+      return { movies: mockMovies, page: 1, totalPages: 1 };
     }
   }
-  // fallback para mock
   await new Promise(resolve => setTimeout(resolve, 1000));
-  return mockMovies;
+  return { movies: mockMovies, page: 1, totalPages: 1 };
 };
 
-export const searchMovies = async (query: string) => {
+export const searchMovies = async (query: string, page = 1) => {
   if (API_KEY && READ_TOKEN) {
     try {
-      const response = await fetch(`${BASE_URL}/search/movie?query=${encodeURIComponent(query)}&language=pt-BR`, {
+      const response = await fetch(`${BASE_URL}/search/movie?query=${encodeURIComponent(query)}&language=pt-BR&page=${page}`, {
         headers: {
           Authorization: `Bearer ${READ_TOKEN}`,
           'Content-Type': 'application/json;charset=utf-8',
         },
       });
       const data = await response.json();
-      // Adiciona preço fictício para cada filme
-      return data.results.map((movie: any) => ({
-        ...movie,
-        price: (Math.random() * 10 + 15).toFixed(2),
-      }));
+      return {
+        movies: data.results.map((movie: any) => ({
+          ...movie,
+          price: (Math.random() * 10 + 15).toFixed(2),
+        })),
+        page: data.page,
+        totalPages: data.total_pages,
+      };
     } catch (error) {
       console.error('Erro ao buscar filmes na TMDB:', error);
-      // fallback para mock
-      return mockMovies.filter(movie => 
-        movie.title.toLowerCase().includes(query.toLowerCase()) ||
-        movie.overview.toLowerCase().includes(query.toLowerCase())
-      );
+      return { movies: mockMovies, page: 1, totalPages: 1 };
     }
   }
-  // fallback para mock
   await new Promise(resolve => setTimeout(resolve, 500));
-  return mockMovies.filter(movie => 
-    movie.title.toLowerCase().includes(query.toLowerCase()) ||
-    movie.overview.toLowerCase().includes(query.toLowerCase())
-  );
+  return { movies: mockMovies, page: 1, totalPages: 1 };
 };
 
-export const getImageUrl = (path: string) => {
+export const getImageUrl = (path: string | null | undefined) => {
+  if (!path) {
+    return '/sem-imagem.svg';
+  }
   if (path.startsWith('/')) path = path.slice(1);
   return `${IMAGE_BASE_URL}/${path}`;
 };
