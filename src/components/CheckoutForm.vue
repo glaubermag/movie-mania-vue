@@ -1,8 +1,8 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="space-y-8 bg-white/10 backdrop-blur-md border-2 border-primary/30 shadow-xl rounded-xl p-8 animate-fade-in transition-all duration-300">
+  <form @submit.prevent="handleSubmit" class="space-y-8 bg-white/10 backdrop-blur-md border-2 border-primary/30 shadow-xl rounded-xl p-8 animate-fade-in transition-all duration-300 max-w-2xl mx-auto">
     <div class="card bg-transparent shadow-none border-none">
       <div class="card-header mb-2">
-        <div class="card-title text-xl font-bold text-primary tracking-wide">Informações Pessoais</div>
+        <div class="card-title text-2xl font-bold text-primary tracking-wide">Informações Pessoais</div>
       </div>
       <div class="card-content space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -14,10 +14,9 @@
               v-model="formData.email"
               @input="handleInputChange('email', formData.email)"
               placeholder="seu@email.com"
-              :class="{ 'border-red-500': errors.email }"
-              class="input bg-white/20 border border-white/20 rounded-lg px-4 py-2 focus:border-primary focus:ring-2 focus:ring-primary/30 transition w-full text-foreground placeholder:text-gray-400"
+              :class="['input-base', errors.email && 'input-error']"
             />
-            <span v-if="errors.email" class="text-red-500 text-sm">{{ errors.email }}</span>
+            <span v-if="errors.email" class="input-feedback">{{ errors.email }}</span>
           </div>
           <div>
             <label for="phone" class="block mb-1 font-semibold text-foreground">Telefone *</label>
@@ -27,205 +26,192 @@
               v-model="formData.phone"
               @input="handleInputChange('phone', formData.phone)"
               placeholder="(99) 99999-9999"
-              :class="{ 'border-red-500': errors.phone }"
-              class="input bg-white/20 border border-white/20 rounded-lg px-4 py-2 focus:border-primary focus:ring-2 focus:ring-primary/30 transition w-full text-foreground placeholder:text-gray-400"
+              :class="['input-base', errors.phone && 'input-error']"
             />
-            <span v-if="errors.phone" class="text-red-500 text-sm">{{ errors.phone }}</span>
+            <span v-if="errors.phone" class="input-feedback">{{ errors.phone }}</span>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label for="fullName">Nome completo *</label>
+            <label for="fullName" class="block mb-1 font-semibold text-foreground">Nome completo *</label>
             <input
               id="fullName"
               type="text"
               v-model="formData.fullName"
               @input="handleInputChange('fullName', formData.fullName)"
               placeholder="Seu nome completo"
-              :class="{ 'border-red-500': errors.fullName }"
-              class="input"
+              :class="['input-base', errors.fullName && 'input-error']"
             />
-            <span v-if="errors.fullName" class="text-red-500 text-sm">{{ errors.fullName }}</span>
+            <span v-if="errors.fullName" class="input-feedback">{{ errors.fullName }}</span>
           </div>
           <div>
-            <label for="cpf">CPF *</label>
+            <label for="cpf" class="block mb-1 font-semibold text-foreground">CPF *</label>
             <input
               id="cpf"
               type="text"
               v-model="formData.cpf"
               @input="handleInputChange('cpf', formData.cpf)"
               placeholder="000.000.000-00"
-              :class="{ 'border-red-500': errors.cpf }"
-              class="input"
+              :class="['input-base', errors.cpf && 'input-error']"
             />
-            <span v-if="errors.cpf" class="text-red-500 text-sm">{{ errors.cpf }}</span>
+            <span v-if="errors.cpf" class="input-feedback">{{ errors.cpf }}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="card">
       <div class="card-header">
-        <div class="card-title">Endereço de Entrega</div>
+        <div class="card-title text-xl font-bold text-primary">Endereço de Entrega</div>
       </div>
       <div class="card-content space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="cep">CEP *</label>
+            <label for="cep" class="block mb-1 font-semibold text-foreground">CEP *</label>
             <input
               id="cep"
               type="text"
               v-model="formData.cep"
               @input="handleInputChange('cep', formData.cep)"
               placeholder="00000-000"
-              :class="{ 'border-red-500': errors.cep }"
-              class="input"
+              :class="['input-base', errors.cep && 'input-error']"
             />
-            <span v-if="errors.cep" class="text-red-500 text-sm">{{ errors.cep }}</span>
+            <span v-if="errors.cep" class="input-feedback">{{ errors.cep }}</span>
           </div>
           <div>
-            <label for="address">Endereço *</label>
+            <label for="address" class="block mb-1 font-semibold text-foreground">Endereço *</label>
             <input
               id="address"
               type="text"
               v-model="formData.address"
               @input="handleInputChange('address', formData.address)"
               placeholder="Rua, Avenida, etc."
-              :class="{ 'border-red-500': errors.address }"
-              class="input"
+              :class="['input-base', errors.address && 'input-error']"
             />
-            <span v-if="errors.address" class="text-red-500 text-sm">{{ errors.address }}</span>
+            <span v-if="errors.address" class="input-feedback">{{ errors.address }}</span>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="number">Número *</label>
+            <label for="number" class="block mb-1 font-semibold text-foreground">Número *</label>
             <input
               id="number"
               type="text"
               v-model="formData.number"
               @input="handleInputChange('number', formData.number)"
               placeholder="Número"
-              :class="{ 'border-red-500': errors.number }"
-              class="input"
+              :class="['input-base', errors.number && 'input-error']"
             />
-            <span v-if="errors.number" class="text-red-500 text-sm">{{ errors.number }}</span>
+            <span v-if="errors.number" class="input-feedback">{{ errors.number }}</span>
           </div>
           <div>
-            <label for="complement">Complemento</label>
+            <label for="complement" class="block mb-1 font-semibold text-foreground">Complemento</label>
             <input
               id="complement"
               type="text"
               v-model="formData.complement"
               @input="handleInputChange('complement', formData.complement)"
               placeholder="Apto, bloco, etc."
-              class="input"
+              class="input-base"
             />
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="neighborhood">Bairro *</label>
+            <label for="neighborhood" class="block mb-1 font-semibold text-foreground">Bairro *</label>
             <input
               id="neighborhood"
               type="text"
               v-model="formData.neighborhood"
               @input="handleInputChange('neighborhood', formData.neighborhood)"
               placeholder="Bairro"
-              :class="{ 'border-red-500': errors.neighborhood }"
-              class="input"
+              :class="['input-base', errors.neighborhood && 'input-error']"
             />
-            <span v-if="errors.neighborhood" class="text-red-500 text-sm">{{ errors.neighborhood }}</span>
+            <span v-if="errors.neighborhood" class="input-feedback">{{ errors.neighborhood }}</span>
           </div>
           <div>
-            <label for="city">Cidade *</label>
+            <label for="city" class="block mb-1 font-semibold text-foreground">Cidade *</label>
             <input
               id="city"
               type="text"
               v-model="formData.city"
               @input="handleInputChange('city', formData.city)"
               placeholder="Cidade"
-              :class="{ 'border-red-500': errors.city }"
-              class="input"
+              :class="['input-base', errors.city && 'input-error']"
             />
-            <span v-if="errors.city" class="text-red-500 text-sm">{{ errors.city }}</span>
+            <span v-if="errors.city" class="input-feedback">{{ errors.city }}</span>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="state">Estado *</label>
+            <label for="state" class="block mb-1 font-semibold text-foreground">Estado *</label>
             <input
               id="state"
               type="text"
               v-model="formData.state"
               @input="handleInputChange('state', formData.state)"
               placeholder="Estado"
-              :class="{ 'border-red-500': errors.state }"
-              class="input"
+              :class="['input-base', errors.state && 'input-error']"
             />
-            <span v-if="errors.state" class="text-red-500 text-sm">{{ errors.state }}</span>
+            <span v-if="errors.state" class="input-feedback">{{ errors.state }}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="card">
       <div class="card-header">
-        <div class="card-title">Pagamento</div>
+        <div class="card-title text-xl font-bold text-primary">Pagamento</div>
       </div>
       <div class="card-content space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="cardNumber">Número do cartão *</label>
+            <label for="cardNumber" class="block mb-1 font-semibold text-foreground">Número do cartão *</label>
             <input
               id="cardNumber"
               type="text"
               v-model="formData.cardNumber"
               @input="handleInputChange('cardNumber', formData.cardNumber)"
               placeholder="0000 0000 0000 0000"
-              :class="{ 'border-red-500': errors.cardNumber }"
-              class="input"
+              :class="['input-base', errors.cardNumber && 'input-error']"
             />
-            <span v-if="errors.cardNumber" class="text-red-500 text-sm">{{ errors.cardNumber }}</span>
+            <span v-if="errors.cardNumber" class="input-feedback">{{ errors.cardNumber }}</span>
           </div>
           <div>
-            <label for="cardName">Nome no cartão *</label>
+            <label for="cardName" class="block mb-1 font-semibold text-foreground">Nome no cartão *</label>
             <input
               id="cardName"
               type="text"
               v-model="formData.cardName"
               @input="handleInputChange('cardName', formData.cardName)"
               placeholder="Nome impresso no cartão"
-              :class="{ 'border-red-500': errors.cardName }"
-              class="input"
+              :class="['input-base', errors.cardName && 'input-error']"
             />
-            <span v-if="errors.cardName" class="text-red-500 text-sm">{{ errors.cardName }}</span>
+            <span v-if="errors.cardName" class="input-feedback">{{ errors.cardName }}</span>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="expiryDate">Validade *</label>
+            <label for="expiryDate" class="block mb-1 font-semibold text-foreground">Validade *</label>
             <input
               id="expiryDate"
               type="text"
               v-model="formData.expiryDate"
               @input="handleInputChange('expiryDate', formData.expiryDate)"
               placeholder="MM/AA"
-              :class="{ 'border-red-500': errors.expiryDate }"
-              class="input"
+              :class="['input-base', errors.expiryDate && 'input-error']"
             />
-            <span v-if="errors.expiryDate" class="text-red-500 text-sm">{{ errors.expiryDate }}</span>
+            <span v-if="errors.expiryDate" class="input-feedback">{{ errors.expiryDate }}</span>
           </div>
           <div>
-            <label for="cvv">CVV *</label>
+            <label for="cvv" class="block mb-1 font-semibold text-foreground">CVV *</label>
             <input
               id="cvv"
               type="text"
               v-model="formData.cvv"
               @input="handleInputChange('cvv', formData.cvv)"
               placeholder="CVV"
-              :class="{ 'border-red-500': errors.cvv }"
-              class="input"
+              :class="['input-base', errors.cvv && 'input-error']"
             />
-            <span v-if="errors.cvv" class="text-red-500 text-sm">{{ errors.cvv }}</span>
+            <span v-if="errors.cvv" class="input-feedback">{{ errors.cvv }}</span>
           </div>
         </div>
       </div>
@@ -386,4 +372,16 @@ function formatPrice(price: number) {
     currency: 'BRL'
   }).format(price);
 }
-</script> 
+</script>
+
+<style scoped>
+.input-base {
+  @apply bg-white/70 border border-gray-300 rounded-lg px-4 py-2 text-base text-foreground placeholder:text-gray-400 shadow-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition w-full;
+}
+.input-error {
+  @apply border-red-500 ring-2 ring-red-200;
+}
+.input-feedback {
+  @apply text-red-500 text-xs mt-1 block;
+}
+</style> 
