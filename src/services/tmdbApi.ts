@@ -1,5 +1,6 @@
-
-const API_KEY = 'your_api_key_here';
+// Variáveis de ambiente
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const READ_TOKEN = import.meta.env.VITE_TMDB_READ_TOKEN;
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -74,13 +75,56 @@ const mockMovies = [
 ];
 
 export const getPopularMovies = async () => {
-  // Simulando delay da API
+  if (API_KEY && READ_TOKEN) {
+    try {
+      const response = await fetch(`${BASE_URL}/movie/popular?language=pt-BR`, {
+        headers: {
+          Authorization: `Bearer ${READ_TOKEN}`,
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      });
+      const data = await response.json();
+      // Adiciona preço fictício para cada filme
+      return data.results.map((movie: any) => ({
+        ...movie,
+        price: (Math.random() * 10 + 15).toFixed(2),
+      }));
+    } catch (error) {
+      console.error('Erro ao buscar filmes populares da TMDB:', error);
+      // fallback para mock
+      return mockMovies;
+    }
+  }
+  // fallback para mock
   await new Promise(resolve => setTimeout(resolve, 1000));
   return mockMovies;
 };
 
 export const searchMovies = async (query: string) => {
-  // Simulando busca
+  if (API_KEY && READ_TOKEN) {
+    try {
+      const response = await fetch(`${BASE_URL}/search/movie?query=${encodeURIComponent(query)}&language=pt-BR`, {
+        headers: {
+          Authorization: `Bearer ${READ_TOKEN}`,
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      });
+      const data = await response.json();
+      // Adiciona preço fictício para cada filme
+      return data.results.map((movie: any) => ({
+        ...movie,
+        price: (Math.random() * 10 + 15).toFixed(2),
+      }));
+    } catch (error) {
+      console.error('Erro ao buscar filmes na TMDB:', error);
+      // fallback para mock
+      return mockMovies.filter(movie => 
+        movie.title.toLowerCase().includes(query.toLowerCase()) ||
+        movie.overview.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+  }
+  // fallback para mock
   await new Promise(resolve => setTimeout(resolve, 500));
   return mockMovies.filter(movie => 
     movie.title.toLowerCase().includes(query.toLowerCase()) ||
@@ -89,5 +133,6 @@ export const searchMovies = async (query: string) => {
 };
 
 export const getImageUrl = (path: string) => {
-  return `https://images.unsplash.com/${path}?auto=format&fit=crop&w=500&q=80`;
+  if (path.startsWith('/')) path = path.slice(1);
+  return `${IMAGE_BASE_URL}/${path}`;
 };
