@@ -32,6 +32,17 @@ Desenvolver uma loja virtual de filmes com interface moderna, integração com a
 - Responsividade total (mobile first)
 - Animações e feedbacks visuais
 
+### Autocomplete de Endereço via CEP
+
+O formulário de checkout possui integração automática com a API [ViaCEP](https://viacep.com.br/):
+- Ao digitar um CEP válido, o sistema consulta a API e preenche automaticamente os campos de endereço, bairro, cidade, estado e complemento.
+- Isso facilita o preenchimento, reduz erros e melhora a experiência do usuário.
+- Caso o CEP seja inválido ou não encontrado, o preenchimento automático não ocorre.
+
+**Exemplo de uso:**
+1. Digite um CEP válido no campo correspondente.
+2. Os campos de endereço serão preenchidos automaticamente.
+
 ## Tecnologias Utilizadas
 - [Vue 3](https://vuejs.org/)
 - [Vuex](https://vuex.vuejs.org/)

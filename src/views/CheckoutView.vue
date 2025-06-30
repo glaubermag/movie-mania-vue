@@ -23,9 +23,9 @@
           <CheckoutForm :totalPrice="totalPrice" @submit="handleFormSubmit" />
         </div>
         <div>
-          <div class="card sticky top-4 bg-white/10 backdrop-blur-md border-2 border-primary/30 shadow-xl animate-fade-in transition-all duration-300">
-            <div class="card-header pb-2 border-b border-primary/20">
-              <div class="card-title text-xl font-bold text-primary tracking-wide">Resumo do Pedido</div>
+          <div class="card sticky top-4 bg-zinc-900/90 backdrop-blur-md border-2 border-orange-500/30 shadow-xl animate-fade-in transition-all duration-300">
+            <div class="card-header pb-2 border-b border-orange-500/20">
+              <div class="card-title text-xl font-bold text-orange-400 tracking-wide">Resumo do Pedido</div>
             </div>
             <div class="card-content py-4">
               <div class="space-y-4">
@@ -35,7 +35,7 @@
                     <h4 class="text-base font-semibold line-clamp-2 text-foreground">{{ item.movie.title }}</h4>
                     <div class="flex items-center justify-between mt-1">
                       <span class="text-xs text-gray-400">Qtd: {{ item.quantity }}</span>
-                      <span class="text-base font-bold text-primary">{{ formatPrice((item.movie.price || 19.99) * item.quantity) }}</span>
+                      <span class="text-base font-bold text-orange-400">{{ formatPrice((item.movie.price || 19.99) * item.quantity) }}</span>
                     </div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@
               <div class="border-t border-primary/20 mt-6 pt-4">
                 <div class="flex items-center justify-between text-lg font-bold">
                   <span>Total:</span>
-                  <span class="text-primary">{{ formatPrice(totalPrice) }}</span>
+                  <span class="text-orange-400">{{ formatPrice(totalPrice) }}</span>
                 </div>
               </div>
             </div>

@@ -71,7 +71,7 @@
               id="cep"
               type="text"
               v-model="formData.cep"
-              @input="handleInputChange('cep', formData.cep)"
+              @input="handleInputChange('cep', formData.cep); handleCepInput()"
               placeholder="00000-000"
               :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.cep && 'border-red-500 focus:ring-red-500']"
             />
@@ -393,6 +393,30 @@ function formatPrice(price: number) {
     style: 'currency',
     currency: 'BRL'
   }).format(price);
+}
+
+// Função para buscar dados do ViaCEP
+async function fetchAddressByCep(cep: string) {
+  const cleanCep = cep.replace(/\D/g, '');
+  if (cleanCep.length !== 8) return;
+  try {
+    const response = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
+    if (!response.ok) return;
+    const data = await response.json();
+    if (data.erro) return;
+    formData.address = data.logradouro || '';
+    formData.neighborhood = data.bairro || '';
+    formData.city = data.localidade || '';
+    formData.state = data.uf || '';
+    formData.complement = data.complemento || '';
+  } catch (e) {
+    // Silencia erro de rede
+  }
+}
+
+// Observa mudanças no CEP
+function handleCepInput() {
+  fetchAddressByCep(formData.cep);
 }
 </script>
 
