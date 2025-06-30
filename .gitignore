@@ -1,0 +1,34 @@
+# Dependências
+node_modules/
+
+# Build
+/dist
+/.output
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Diretórios do sistema
+.DS_Store
+Thumbs.db
+
+# Configurações do ambiente
+.env
+.env.*
+
+# Cache do Vite
+.vite
+
+# Arquivos do editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Outros
+coverage/ 
