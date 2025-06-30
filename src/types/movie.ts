@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 export interface Movie {
   id: number;
   title: string;
