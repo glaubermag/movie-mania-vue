@@ -1,5 +1,5 @@
 <template>
-  <div class="movie-card group">
+  <div class="movie-card group h-full flex flex-col bg-white/5 rounded-xl shadow-lg overflow-hidden min-h-[420px] max-h-[420px]">
     <div class="relative">
       <img :src="getImageUrl(movie.poster_path)" :alt="movie.title" class="w-full h-64 object-cover" />
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -21,10 +21,10 @@
         </button>
       </div>
     </div>
-    <div class="p-4">
+    <div class="p-4 flex flex-col flex-1 justify-between">
       <h3 class="font-semibold text-lg mb-2 line-clamp-1">{{ movie.title }}</h3>
-      <p class="text-gray-400 text-sm mb-3 line-clamp-2">{{ movie.overview }}</p>
-      <div class="flex items-center justify-between">
+      <p class="text-gray-400 text-sm mb-3 line-clamp-2 min-h-[40px]">{{ movie.overview || ' ' }}</p>
+      <div class="flex items-center justify-between mt-auto">
         <div class="flex items-center space-x-2">
           <div class="flex items-center">
             <span class="text-yellow-400 text-sm">★</span>
