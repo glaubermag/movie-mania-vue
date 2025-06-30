@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { getImageUrl } from './tmdbApi';
 import * as api from './tmdbApi';
 
@@ -10,11 +10,11 @@ window.fetch = mockFetch;
 
 const mockResponse = (data, ok = true) => ({
   ok,
-  json: async () => data
+  json: async () => data,
 });
 
 describe('tmdbApi', () => {
-  const OLD_ENV = { ...import.meta.env };
+  // const OLD_ENV = { ...import.meta.env };
   beforeEach(() => {
     mockFetch.mockReset();
     // Reset env vars
@@ -23,7 +23,9 @@ describe('tmdbApi', () => {
   });
 
   it('getPopularMovies retorna filmes populares da API', async () => {
-    mockFetch.mockResolvedValueOnce(mockResponse({ results: [{ id: 1, title: 'Filme Popular' }], page: 1, total_pages: 2 }));
+    mockFetch.mockResolvedValueOnce(
+      mockResponse({ results: [{ id: 1, title: 'Filme Popular' }], page: 1, total_pages: 2 })
+    );
     const result = await api.getPopularMovies();
     expect(result.movies[0].id).toBe(1);
     expect(result.page).toBe(1);
@@ -46,7 +48,9 @@ describe('tmdbApi', () => {
   });
 
   it('searchMovies retorna filmes da API', async () => {
-    mockFetch.mockResolvedValueOnce(mockResponse({ results: [{ id: 2, title: 'Busca' }], page: 1, total_pages: 1 }));
+    mockFetch.mockResolvedValueOnce(
+      mockResponse({ results: [{ id: 2, title: 'Busca' }], page: 1, total_pages: 1 })
+    );
     const result = await api.searchMovies('Busca');
     expect(result.movies[0].id).toBe(2);
     expect(result.page).toBe(1);
@@ -106,4 +110,4 @@ describe('getImageUrl', () => {
     expect(api.getImageUrl(null)).toContain('sem-imagem.svg');
     expect(api.getImageUrl(undefined)).toContain('sem-imagem.svg');
   });
-}); 
+});

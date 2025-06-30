@@ -33,8 +33,16 @@ describe('favorites store', () => {
   });
 
   it('getter favorites retorna todos os favoritos', () => {
-    const state = getState({ favorites: [{ id: 1, title: 'A' }, { id: 2, title: 'B' }] });
-    expect(getters.favorites(state)).toEqual([{ id: 1, title: 'A' }, { id: 2, title: 'B' }]);
+    const state = getState({
+      favorites: [
+        { id: 1, title: 'A' },
+        { id: 2, title: 'B' },
+      ],
+    });
+    expect(getters.favorites(state)).toEqual([
+      { id: 1, title: 'A' },
+      { id: 2, title: 'B' },
+    ]);
   });
 
   it('getter isFavorite retorna true se item está nos favoritos', () => {
@@ -42,4 +50,4 @@ describe('favorites store', () => {
     expect(getters.isFavorite(state)(1)).toBe(true);
     expect(getters.isFavorite(state)(2)).toBe(false);
   });
-}); 
+});

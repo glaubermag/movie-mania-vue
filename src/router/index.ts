@@ -4,23 +4,23 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/HomeView.vue')
+    component: () => import('@/views/HomeView.vue'),
   },
   {
     path: '/checkout',
     name: 'Checkout',
-    component: () => import('@/views/CheckoutView.vue')
+    component: () => import('@/views/CheckoutView.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: () => import('@/views/NotFoundView.vue')
-  }
+    component: () => import('@/views/NotFoundView.vue'),
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 });
 
-export default router; 
+export default router;

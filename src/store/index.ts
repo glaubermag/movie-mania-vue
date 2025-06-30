@@ -14,4 +14,4 @@ const store = createStore<RootState>({
   },
 });
 
-export default store; 
+export default store;

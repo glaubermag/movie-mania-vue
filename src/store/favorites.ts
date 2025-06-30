@@ -15,16 +15,16 @@ const favoritesModule: Module<FavoritesState, any> = {
       state.favorites = favorites;
     },
     addToFavorites(state, movie: Movie) {
-      if (!state.favorites.find(fav => fav.id === movie.id)) {
+      if (!state.favorites.find((fav) => fav.id === movie.id)) {
         state.favorites.push(movie);
       }
     },
     removeFromFavorites(state, movieId: number) {
-      state.favorites = state.favorites.filter(movie => movie.id !== movieId);
+      state.favorites = state.favorites.filter((movie) => movie.id !== movieId);
     },
     clearFavorites(state) {
       state.favorites = [];
-    }
+    },
   },
   actions: {
     loadFavorites({ commit }) {
@@ -50,9 +50,9 @@ const favoritesModule: Module<FavoritesState, any> = {
       return state.favorites;
     },
     isFavorite: (state) => (movieId: number) => {
-      return state.favorites.some(movie => movie.id === movieId);
+      return state.favorites.some((movie) => movie.id === movieId);
     },
   },
 };
 
-export default favoritesModule; 
+export default favoritesModule;

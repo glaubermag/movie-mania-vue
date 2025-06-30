@@ -7,4 +7,4 @@
 
 <script setup lang="ts">
 // Página 404 do app Vue
-</script> 
+</script>

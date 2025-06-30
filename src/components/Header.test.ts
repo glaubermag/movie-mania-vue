@@ -4,11 +4,20 @@ import Header from './Header.vue';
 import { createStore } from 'vuex';
 
 vi.mock('vue-router', () => ({
-  useRouter: () => ({ push: vi.fn() })
+  useRouter: () => ({ push: vi.fn() }),
 }));
 
 const favoriteMovies = [
-  { id: 1, title: 'Filme Favorito', poster_path: '', backdrop_path: '', overview: '', release_date: '', vote_average: 0, genre_ids: [] }
+  {
+    id: 1,
+    title: 'Filme Favorito',
+    poster_path: '',
+    backdrop_path: '',
+    overview: '',
+    release_date: '',
+    vote_average: 0,
+    genre_ids: [],
+  },
 ];
 
 function makeStore(dispatchMock = vi.fn(), favs = favoriteMovies) {
@@ -19,33 +28,39 @@ function makeStore(dispatchMock = vi.fn(), favs = favoriteMovies) {
         getters: {
           getTotalItems: () => 2,
           items: () => [],
-        }
+        },
       },
       favorites: {
         namespaced: true,
         getters: { favorites: () => favs },
-        actions: { removeFromFavorites: dispatchMock }
-      }
-    }
+        actions: { removeFromFavorites: dispatchMock },
+      },
+    },
   });
 }
 
 describe('Header', () => {
   it('renderiza o título do site', () => {
     const store = makeStore();
-    const wrapper = mount(Header, { global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } } });
+    const wrapper = mount(Header, {
+      global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } },
+    });
     expect(wrapper.text()).toContain('MovieMania');
   });
 
   it('exibe o total de itens no carrinho', () => {
     const store = makeStore();
-    const wrapper = mount(Header, { global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } } });
+    const wrapper = mount(Header, {
+      global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } },
+    });
     expect(wrapper.text()).toContain('2');
   });
 
   it('abre o modal de favoritos ao clicar no botão', async () => {
     const store = makeStore();
-    const wrapper = mount(Header, { global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } } });
+    const wrapper = mount(Header, {
+      global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } },
+    });
     await wrapper.find('button[aria-label="Favoritos"]').trigger('click');
     expect(wrapper.text()).toContain('Filme Favorito');
   });
@@ -53,7 +68,9 @@ describe('Header', () => {
   it('remove um favorito ao clicar no botão de remover', async () => {
     const dispatch = vi.fn();
     const store = makeStore(dispatch);
-    const wrapper = mount(Header, { global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } } });
+    const wrapper = mount(Header, {
+      global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } },
+    });
     await wrapper.find('button[aria-label="Favoritos"]').trigger('click');
     await wrapper.find('button[aria-label="Remover dos favoritos"]').trigger('click');
     expect(dispatch).toHaveBeenCalled();
@@ -61,7 +78,9 @@ describe('Header', () => {
 
   it('exibe mensagem quando não há favoritos', async () => {
     const store = makeStore(vi.fn(), []);
-    const wrapper = mount(Header, { global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } } });
+    const wrapper = mount(Header, {
+      global: { plugins: [store], stubs: { RouterLink: RouterLinkStub } },
+    });
     await wrapper.find('button[aria-label="Favoritos"]').trigger('click');
     expect(wrapper.text()).toContain('Nenhum filme favorito encontrado.');
   });
@@ -71,8 +90,8 @@ describe('Header', () => {
     const wrapper = mount(Header, {
       global: {
         plugins: [store],
-        stubs: { RouterLink: RouterLinkStub }
-      }
+        stubs: { RouterLink: RouterLinkStub },
+      },
     });
     console.log(wrapper.html());
     await wrapper.find('h1').trigger('click');
@@ -86,8 +105,8 @@ describe('Header', () => {
     const wrapper = mount(Header, {
       global: {
         plugins: [store],
-        stubs: { RouterLink: RouterLinkStub }
-      }
+        stubs: { RouterLink: RouterLinkStub },
+      },
     });
     console.log(wrapper.html());
     // O segundo botão é o do carrinho
@@ -102,8 +121,8 @@ describe('Header', () => {
     const wrapper = mount(Header, {
       global: {
         plugins: [store],
-        stubs: { RouterLink: RouterLinkStub }
-      }
+        stubs: { RouterLink: RouterLinkStub },
+      },
     });
     await wrapper.find('button[aria-label="Favoritos"]').trigger('click');
     await wrapper.vm.$nextTick();
@@ -115,8 +134,26 @@ describe('Header', () => {
   it('renderiza todos os favoritos no modal', async () => {
     // Simula favoritos
     const favs = [
-      { id: 1, title: 'Filme A', overview: 'Desc A', poster_path: '', backdrop_path: '', release_date: '', vote_average: 0, genre_ids: [] },
-      { id: 2, title: 'Filme B', overview: 'Desc B', poster_path: '', backdrop_path: '', release_date: '', vote_average: 0, genre_ids: [] },
+      {
+        id: 1,
+        title: 'Filme A',
+        overview: 'Desc A',
+        poster_path: '',
+        backdrop_path: '',
+        release_date: '',
+        vote_average: 0,
+        genre_ids: [],
+      },
+      {
+        id: 2,
+        title: 'Filme B',
+        overview: 'Desc B',
+        poster_path: '',
+        backdrop_path: '',
+        release_date: '',
+        vote_average: 0,
+        genre_ids: [],
+      },
     ];
     const store = makeStore(vi.fn(), favs);
     const wrapper = mount(Header, { global: { plugins: [store] } });
@@ -126,4 +163,4 @@ describe('Header', () => {
     expect(wrapper.html()).toContain('Filme A');
     expect(wrapper.html()).toContain('Filme B');
   });
-}); 
+});

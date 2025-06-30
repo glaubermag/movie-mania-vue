@@ -17,4 +17,4 @@ describe('cn', () => {
   it('deve aceitar array de classes', () => {
     expect(cn(['a', 'b'], 'c')).toBe('a b c');
   });
-}); 
+});

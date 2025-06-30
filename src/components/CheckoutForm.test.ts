@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
 import CheckoutForm from './CheckoutForm.vue';
+import axe from 'axe-core';
 
 describe('CheckoutForm', () => {
   it('renderiza campos obrigatórios', () => {
@@ -101,4 +102,14 @@ describe('CheckoutForm', () => {
     await wrapper.find('form').trigger('submit.prevent');
     expect((wrapper.find('input#email').element as HTMLInputElement).value).toBe('');
   });
-}); 
+
+  it('não possui violações básicas de acessibilidade (axe-core)', async () => {
+    const wrapper = mount(CheckoutForm, {
+      props: { totalPrice: 100 },
+      attachTo: document.body, // necessário para axe analisar o DOM real
+    });
+    const results = await axe.run(wrapper.element);
+    expect(results.violations.length).toBe(0);
+    wrapper.unmount();
+  });
+});

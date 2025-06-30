@@ -15,7 +15,7 @@ const cartModule: Module<CartState, any> = {
       state.items = items;
     },
     addToCart(state, movie: Movie) {
-      const existingItem = state.items.find(item => item.movie.id === movie.id);
+      const existingItem = state.items.find((item) => item.movie.id === movie.id);
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
@@ -24,14 +24,14 @@ const cartModule: Module<CartState, any> = {
       }
     },
     removeFromCart(state, movieId: number) {
-      state.items = state.items.filter(item => item.movie.id !== movieId);
+      state.items = state.items.filter((item) => item.movie.id !== movieId);
     },
     updateQuantity(state, { movieId, quantity }: { movieId: number; quantity: number }) {
       if (quantity === 0) {
-        state.items = state.items.filter(item => item.movie.id !== movieId);
+        state.items = state.items.filter((item) => item.movie.id !== movieId);
         return;
       }
-      const item = state.items.find(item => item.movie.id === movieId);
+      const item = state.items.find((item) => item.movie.id === movieId);
       if (item) {
         item.quantity = quantity;
       }
@@ -69,7 +69,10 @@ const cartModule: Module<CartState, any> = {
   },
   getters: {
     getTotalPrice(state): number {
-      return state.items.reduce((total, item) => total + (item.movie.price || 19.99) * item.quantity, 0);
+      return state.items.reduce(
+        (total, item) => total + (item.movie.price || 19.99) * item.quantity,
+        0
+      );
     },
     getTotalItems(state): number {
       return state.items.reduce((total, item) => total + item.quantity, 0);
@@ -80,4 +83,4 @@ const cartModule: Module<CartState, any> = {
   },
 };
 
-export default cartModule; 
+export default cartModule;

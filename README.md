@@ -78,6 +78,96 @@ O projeto pode ser facilmente hospedado em serviços como Vercel, Netlify ou sim
 - A experiência mobile foi cuidadosamente trabalhada.
 - O código está documentado e fácil de manter.
 
+## Decisões Técnicas e Arquitetura
+
+- **Framework:** Vue.js 3 + Composition API
+- **Gerenciamento de estado:** Vuex modularizado (cart, favorites)
+- **Estilização:** TailwindCSS, com foco em responsividade e contraste
+- **Testes:** Vitest + @vue/test-utils, cobertura alta dos fluxos críticos
+- **Integração externa:** Consumo da API TMDb para filmes e ViaCEP para autocomplete de endereço
+- **Componentização:** Separação clara de responsabilidades, componentes reutilizáveis e slots
+- **Rotas:** Lazy loading para melhor performance
+- **Padrões:** ESLint, Prettier e tipagem com TypeScript
+
+### Como rodar o projeto
+
+```bash
+npm install
+npm run dev
+```
+
+### Como rodar os testes
+
+```bash
+npm run test
+# ou
+npx vitest run --coverage
+```
+
+### Como contribuir
+
+- Faça um fork do projeto
+- Crie uma branch para sua feature/fix
+- Envie um Pull Request com descrição clara
+
+---
+
+## Diferenciais desta entrega
+
+- Integração real com API externa (ViaCEP) para experiência de usuário aprimorada
+- Testes automatizados com alta cobertura e exemplos de mocks Vuex/router
+- Responsividade avançada e acessibilidade (labels, contraste, navegação por teclado)
+- Componentização e separação de responsabilidades
+
+
+---
+
+## Acessibilidade
+
+- Uso de `aria-label` em botões e campos de busca
+- Contraste alto em todos os elementos interativos
+- Navegação por teclado garantida (inputs, botões, modais)
+- Feedbacks visuais claros para erros, loading e ações
+- Estrutura semântica de HTML (uso correto de headings, labels, etc)
+
+
+---
+
+## Performance e Boas Práticas
+
+- **Lazy loading** de rotas e componentes para carregamento mais rápido
+- **Otimização de imagens** (carregamento sob demanda, uso de placeholders)
+- **Componentes reutilizáveis** e uso de slots para máxima flexibilidade
+- **Responsividade mobile-first** e cross-browser testada
+- **Separação de responsabilidades**: serviços, stores, componentes e views bem definidos
+
+
+---
+
+## 🚀 Automação e Qualidade
+
+### Scripts disponíveis
+- `npm run lint` — Lint com ESLint
+- `npm run format` — Formatação com Prettier
+- `npm run test` — Testes unitários
+- `npm run test:coverage` — Testes com cobertura
+- `npm run type-check` — Checagem de tipos TypeScript
+- `npm run check:accessibility` — Teste de acessibilidade automatizado (axe-core)
+- `npm run build` — Build de produção
+
+### Git Hooks
+- **Pré-commit:** Lint e Prettier automáticos via Husky + lint-staged
+- **Pré-push:** Testes com cobertura e checagem de tipos
+
+### CI/CD
+- Workflow GitHub Actions: Lint, testes, cobertura, type-check e build a cada push/pull request na branch main
+
+### Docker
+- Build e deploy prontos para produção com Dockerfile otimizado (multi-stage)
+
+### Observações sobre cobertura
+- O projeto exige 100% de cobertura nos componentes críticos. O CI falha se algum teste falhar.
+- O relatório de cobertura é gerado em `coverage/` após `npm run test:coverage`.
 
 ---
 

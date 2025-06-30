@@ -14,4 +14,4 @@ describe('SuccessModal', () => {
     expect(wrapper.text()).toContain('Compra Realizada!');
     expect(wrapper.text()).toContain('12345');
   });
-}); 
+});

@@ -7,10 +7,15 @@
           {{ searchQuery ? `Resultados para "${searchQuery}"` : 'Filmes Populares' }}
         </h2>
         <p class="text-gray-400">
-          {{ searchQuery ? 'Encontramos os seguintes filmes' : 'Descubra os filmes mais assistidos' }}
+          {{
+            searchQuery ? 'Encontramos os seguintes filmes' : 'Descubra os filmes mais assistidos'
+          }}
         </p>
       </div>
-      <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <div
+        v-if="loading"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+      >
         <div v-for="index in 10" :key="index" class="movie-card animate-pulse">
           <div class="w-full h-64 bg-gray-700 mb-4" />
           <div class="p-4">
@@ -29,7 +34,9 @@
           <p class="mt-2">Tente buscar por outro termo</p>
         </div>
         <div v-else>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
+          >
             <div v-for="movie in movies" :key="movie.id" class="animate-fade-in">
               <MovieCard :movie="movie" />
             </div>
@@ -58,7 +65,11 @@
               >
                 {{ page }}
               </button>
-              <span v-else class="w-7 h-9 flex items-center justify-center text-gray-400 text-lg mx-0.5">…</span>
+              <span
+                v-else
+                class="w-7 h-9 flex items-center justify-center text-gray-400 text-lg mx-0.5"
+                >…</span
+              >
             </template>
             <button
               :disabled="currentPage === totalPages"
@@ -137,9 +148,24 @@ const paginationPages = computed(() => {
     if (currentPage.value <= 3) {
       pages.push(1, 2, 3, 4, '...', totalPages.value);
     } else if (currentPage.value >= totalPages.value - 2) {
-      pages.push(1, '...', totalPages.value - 3, totalPages.value - 2, totalPages.value - 1, totalPages.value);
+      pages.push(
+        1,
+        '...',
+        totalPages.value - 3,
+        totalPages.value - 2,
+        totalPages.value - 1,
+        totalPages.value
+      );
     } else {
-      pages.push(1, '...', currentPage.value - 1, currentPage.value, currentPage.value + 1, '...', totalPages.value);
+      pages.push(
+        1,
+        '...',
+        currentPage.value - 1,
+        currentPage.value,
+        currentPage.value + 1,
+        '...',
+        totalPages.value
+      );
     }
   }
   return pages;
@@ -148,4 +174,4 @@ const paginationPages = computed(() => {
 onMounted(() => {
   loadMovies();
 });
-</script> 
+</script>

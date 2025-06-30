@@ -1,8 +1,13 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="space-y-8 bg-zinc-900/90 backdrop-blur-md shadow-xl rounded-xl p-6 md:p-8 border-2 border-orange-500/30 animate-fade-in transition-all duration-300 max-w-2xl mx-auto">
+  <form
+    @submit.prevent="handleSubmit"
+    class="space-y-8 bg-zinc-900/90 backdrop-blur-md shadow-xl rounded-xl p-6 md:p-8 border-2 border-orange-500/30 animate-fade-in transition-all duration-300 max-w-2xl mx-auto"
+  >
     <div class="card bg-transparent shadow-none border-none">
       <div class="card-header mb-2">
-        <div class="card-title text-2xl font-bold text-orange-400 tracking-wide">Informações Pessoais</div>
+        <div class="card-title text-2xl font-bold text-orange-400 tracking-wide">
+          Informações Pessoais
+        </div>
       </div>
       <div class="card-content space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -14,9 +19,15 @@
               v-model="formData.email"
               @input="handleInputChange('email', formData.email)"
               placeholder="seu@email.com"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.email && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.email && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.email" class="text-red-400 text-sm mt-1 block">{{ errors.email }}</span>
+            <span v-if="errors.email" class="text-red-400 text-sm mt-1 block">{{
+              errors.email
+            }}</span>
           </div>
           <div>
             <label for="phone" class="block mb-1 font-semibold text-white">Telefone *</label>
@@ -26,23 +37,37 @@
               v-model="formData.phone"
               @input="handleInputChange('phone', formData.phone)"
               placeholder="(99) 99999-9999"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.phone && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.phone && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.phone" class="text-red-400 text-sm mt-1 block">{{ errors.phone }}</span>
+            <span v-if="errors.phone" class="text-red-400 text-sm mt-1 block">{{
+              errors.phone
+            }}</span>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <div>
-            <label for="fullName" class="block mb-1 font-semibold text-white">Nome completo *</label>
+            <label for="fullName" class="block mb-1 font-semibold text-white"
+              >Nome completo *</label
+            >
             <input
               id="fullName"
               type="text"
               v-model="formData.fullName"
               @input="handleInputChange('fullName', formData.fullName)"
               placeholder="Seu nome completo"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.fullName && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.fullName && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.fullName" class="text-red-400 text-sm mt-1 block">{{ errors.fullName }}</span>
+            <span v-if="errors.fullName" class="text-red-400 text-sm mt-1 block">{{
+              errors.fullName
+            }}</span>
           </div>
           <div>
             <label for="cpf" class="block mb-1 font-semibold text-white">CPF *</label>
@@ -52,7 +77,11 @@
               v-model="formData.cpf"
               @input="handleInputChange('cpf', formData.cpf)"
               placeholder="000.000.000-00"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.cpf && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.cpf && 'border-red-500 focus:ring-red-500',
+              ]"
             />
             <span v-if="errors.cpf" class="text-red-400 text-sm mt-1 block">{{ errors.cpf }}</span>
           </div>
@@ -71,9 +100,16 @@
               id="cep"
               type="text"
               v-model="formData.cep"
-              @input="handleInputChange('cep', formData.cep); handleCepInput()"
+              @input="
+                handleInputChange('cep', formData.cep);
+                handleCepInput();
+              "
               placeholder="00000-000"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.cep && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.cep && 'border-red-500 focus:ring-red-500',
+              ]"
             />
             <span v-if="errors.cep" class="text-red-400 text-sm mt-1 block">{{ errors.cep }}</span>
           </div>
@@ -85,9 +121,15 @@
               v-model="formData.address"
               @input="handleInputChange('address', formData.address)"
               placeholder="Rua, Avenida, etc."
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.address && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.address && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.address" class="text-red-400 text-sm mt-1 block">{{ errors.address }}</span>
+            <span v-if="errors.address" class="text-red-400 text-sm mt-1 block">{{
+              errors.address
+            }}</span>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -99,9 +141,15 @@
               v-model="formData.number"
               @input="handleInputChange('number', formData.number)"
               placeholder="Número"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.number && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.number && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.number" class="text-red-400 text-sm mt-1 block">{{ errors.number }}</span>
+            <span v-if="errors.number" class="text-red-400 text-sm mt-1 block">{{
+              errors.number
+            }}</span>
           </div>
           <div>
             <label for="complement" class="block mb-1 font-semibold text-white">Complemento</label>
@@ -124,9 +172,15 @@
               v-model="formData.neighborhood"
               @input="handleInputChange('neighborhood', formData.neighborhood)"
               placeholder="Bairro"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.neighborhood && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.neighborhood && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.neighborhood" class="text-red-400 text-sm mt-1 block">{{ errors.neighborhood }}</span>
+            <span v-if="errors.neighborhood" class="text-red-400 text-sm mt-1 block">{{
+              errors.neighborhood
+            }}</span>
           </div>
           <div>
             <label for="city" class="block mb-1 font-semibold text-white">Cidade *</label>
@@ -136,9 +190,15 @@
               v-model="formData.city"
               @input="handleInputChange('city', formData.city)"
               placeholder="Cidade"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.city && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.city && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.city" class="text-red-400 text-sm mt-1 block">{{ errors.city }}</span>
+            <span v-if="errors.city" class="text-red-400 text-sm mt-1 block">{{
+              errors.city
+            }}</span>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -150,9 +210,15 @@
               v-model="formData.state"
               @input="handleInputChange('state', formData.state)"
               placeholder="Estado"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.state && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.state && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.state" class="text-red-400 text-sm mt-1 block">{{ errors.state }}</span>
+            <span v-if="errors.state" class="text-red-400 text-sm mt-1 block">{{
+              errors.state
+            }}</span>
           </div>
         </div>
       </div>
@@ -164,28 +230,44 @@
       <div class="card-content space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="cardNumber" class="block mb-1 font-semibold text-white">Número do cartão *</label>
+            <label for="cardNumber" class="block mb-1 font-semibold text-white"
+              >Número do cartão *</label
+            >
             <input
               id="cardNumber"
               type="text"
               v-model="formData.cardNumber"
               @input="handleInputChange('cardNumber', formData.cardNumber)"
               placeholder="0000 0000 0000 0000"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.cardNumber && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.cardNumber && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.cardNumber" class="text-red-400 text-sm mt-1 block">{{ errors.cardNumber }}</span>
+            <span v-if="errors.cardNumber" class="text-red-400 text-sm mt-1 block">{{
+              errors.cardNumber
+            }}</span>
           </div>
           <div>
-            <label for="cardName" class="block mb-1 font-semibold text-white">Nome no cartão *</label>
+            <label for="cardName" class="block mb-1 font-semibold text-white"
+              >Nome no cartão *</label
+            >
             <input
               id="cardName"
               type="text"
               v-model="formData.cardName"
               @input="handleInputChange('cardName', formData.cardName)"
               placeholder="Nome impresso no cartão"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.cardName && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.cardName && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.cardName" class="text-red-400 text-sm mt-1 block">{{ errors.cardName }}</span>
+            <span v-if="errors.cardName" class="text-red-400 text-sm mt-1 block">{{
+              errors.cardName
+            }}</span>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -197,9 +279,15 @@
               v-model="formData.expiryDate"
               @input="handleInputChange('expiryDate', formData.expiryDate)"
               placeholder="MM/AA"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.expiryDate && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.expiryDate && 'border-red-500 focus:ring-red-500',
+              ]"
             />
-            <span v-if="errors.expiryDate" class="text-red-400 text-sm mt-1 block">{{ errors.expiryDate }}</span>
+            <span v-if="errors.expiryDate" class="text-red-400 text-sm mt-1 block">{{
+              errors.expiryDate
+            }}</span>
           </div>
           <div>
             <label for="cvv" class="block mb-1 font-semibold text-white">CVV *</label>
@@ -209,7 +297,11 @@
               v-model="formData.cvv"
               @input="handleInputChange('cvv', formData.cvv)"
               placeholder="000"
-              :class="['input-base', 'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400', errors.cvv && 'border-red-500 focus:ring-red-500']"
+              :class="[
+                'input-base',
+                'bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-400',
+                errors.cvv && 'border-red-500 focus:ring-red-500',
+              ]"
             />
             <span v-if="errors.cvv" class="text-red-400 text-sm mt-1 block">{{ errors.cvv }}</span>
           </div>
@@ -229,10 +321,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 const emit = defineEmits(['submit', 'success']);
-const props = defineProps<{ totalPrice: number }>();
 
 const formData = reactive({
   email: '',
@@ -249,7 +340,7 @@ const formData = reactive({
   cardNumber: '',
   cardName: '',
   expiryDate: '',
-  cvv: ''
+  cvv: '',
 });
 
 const errors = reactive<Record<string, string>>({});
@@ -290,9 +381,7 @@ function formatExpiryDate(value: string) {
     .replace(/(\/\d{2})\d+?$/, '$1');
 }
 function formatCVV(value: string) {
-  return value
-    .replace(/\D/g, '')
-    .substring(0, 4);
+  return value.replace(/\D/g, '').substring(0, 4);
 }
 function validateEmail(email: string) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -388,12 +477,6 @@ function handleSubmit() {
     formData.cvv = '';
   }
 }
-function formatPrice(price: number) {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(price);
-}
 
 // Função para buscar dados do ViaCEP
 async function fetchAddressByCep(cep: string) {
@@ -409,7 +492,7 @@ async function fetchAddressByCep(cep: string) {
     formData.city = data.localidade || '';
     formData.state = data.uf || '';
     formData.complement = data.complemento || '';
-  } catch (e) {
+  } catch {
     // Silencia erro de rede
   }
 }
@@ -430,4 +513,4 @@ function handleCepInput() {
 .input-feedback {
   @apply text-red-500 text-xs mt-1 block;
 }
-</style> 
+</style>

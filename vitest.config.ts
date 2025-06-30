@@ -12,5 +12,9 @@ export default defineConfig({
     ...viteConfig.test,
     environment: 'jsdom',
     globals: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov'],
+    },
   },
 }); 
